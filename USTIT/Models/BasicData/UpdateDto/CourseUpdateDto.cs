@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace USTITAPI.Models.BasicData
+namespace USTITAPI.Models.BasicData.UpdateDto
 {
-    public class Course
+    public class CourseUpdateDto
     {
-        [Key]
+        [Required]
         public string CourseCode { get; set; }
         [Required]
         [MaxLength(30)]
@@ -12,6 +12,5 @@ namespace USTITAPI.Models.BasicData
         public string? Notes { get; set; }
         public string? Description { get; set; }
         public bool IsActive { get; set; } = true;
-        public DateTime CreationDate { get; set; }
     }
 }
