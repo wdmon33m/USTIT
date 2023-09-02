@@ -1,0 +1,44 @@
+﻿@model IEnumerable<USTITWEB.Areas.BasicData.Models.Dto.CourseDto>
+<br />
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Courses List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Course" asp-action="CreateCourse" class="btn btn-outline-primary">
+                <i class="bi bi-plus-circle"></i> Create New Course</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Course Code
+                </th>
+                <th>
+                    Course Title
+                </th>
+                <th>
+                    Notes
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CourseCode</td>
+                    <td>@item.CourseTitle</td>
+                    <td>@item.Notes</td>
+                    <td>
+                        <a asp-controller="Course" asp-action="UpdateVilla" asp-route-villaId="@item.CourseCode" class="btn btn-success"><i class="bi bi-pencil"></i></a>
+                        <a asp-controller="Course" asp-action="DeleteVilla" asp-route-villaId="@item.CourseCode" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

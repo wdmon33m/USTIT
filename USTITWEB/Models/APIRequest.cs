@@ -1,4 +1,5 @@
-﻿using static USTITUtility.StaticDetails;
+﻿using USTIT.WEB.Utility;
+using static USTIT.WEB.Utility.SD;
 
 namespace USTITWEB.Models
 {

@@ -1,18 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using USTITAPI;
-using USTITAPI.Data;
-using USTITAPI.Repository.BasicData;
-using USTITAPI.Repository.IRepository.BasicData;
+using USTIT.Services.BasicDataAPI;
+using USTIT.Services.BasicDataAPI.Data;
+using USTIT.Services.BasicDataAPI.Extentions;
+using USTIT.Services.BasicDataAPI.Repository;
+using USTIT.Services.BasicDataAPI.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(MappingConfig));
-builder.Services.AddDbContext<ApplicationDbContext>(option =>
+builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("USTITCon"));
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"));
 });
 
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
@@ -29,10 +30,7 @@ builder.Services.AddVersionedApiExplorer(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.AddControllers(option =>
-{
-
-}).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(optionts =>
@@ -87,5 +85,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.ApplyMigration();
 app.Run();

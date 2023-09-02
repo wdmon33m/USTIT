@@ -1,7 +1,6 @@
-﻿using USTITAPI.Models;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace USTITAPI.Repository.IRepository
+namespace USTIT.Services.BasicDataAPI.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {

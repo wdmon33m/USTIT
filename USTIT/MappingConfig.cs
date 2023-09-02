@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using USTITAPI.Models.BasicData;
-using USTITAPI.Models.BasicData.CreateDto;
-using USTITAPI.Models.BasicData.Dto;
-using USTITAPI.Models.BasicData.UpdateDto;
+using USTIT.Services.BasicDataAPI.Models;
+using USTIT.Services.BasicDataAPI.Models.CreateDto;
+using USTIT.Services.BasicDataAPI.Models.Dto;
+using USTIT.Services.BasicDataAPI.Models.UpdateDto;
 
-namespace USTITAPI
+namespace USTIT.Services.BasicDataAPI
 {
     public class MappingConfig : Profile
     {
@@ -13,10 +13,6 @@ namespace USTITAPI
             CreateMap<Course, CourseDto>().ReverseMap();
             CreateMap<Course, CourseCreateDto>().ReverseMap();
             CreateMap<Course, CourseUpdateDto>().ReverseMap();
-
-            //CreateMap<VillaNumber, VillaNumberDTO>().ReverseMap();
-            //CreateMap<VillaNumber, VillaNumberCreateDTO>().ReverseMap();
-            //CreateMap<VillaNumber, VillaNumberUpdateDTO>().ReverseMap();
         }
     }
 }

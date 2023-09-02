@@ -1,9 +1,17 @@
+using USTITWEB.Areas.BasicData.Services;
+using USTITWEB.Areas.BasicData.Services.IServices;
+using USTITWEB;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
+builder.Services.AddHttpClient<ICourseService, CourseService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

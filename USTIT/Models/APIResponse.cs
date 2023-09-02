@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace USTITAPI.Models
+namespace USTIT.Services.BasicDataAPI.Models
 {
     public class APIResponse
     {

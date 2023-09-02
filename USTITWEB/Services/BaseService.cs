@@ -1,9 +1,9 @@
 ﻿using USTITWEB.Models;
-using USTITUtility;
 using Newtonsoft.Json;
 using System.Text;
 using System.Net;
 using USTITWEB.Services.IServices;
+using static USTIT.WEB.Utility.SD;
 
 namespace USTITWEB.Services
 {
@@ -21,7 +21,7 @@ namespace USTITWEB.Services
         {
             try
             {
-                var client = httpClient.CreateClient("USTITAPI");
+                var client = httpClient.CreateClient("USTAPI");
                 HttpRequestMessage message = new HttpRequestMessage();
                 message.Headers.Add("Accept", "application/json");
                 message.RequestUri = new Uri(apiRequest.Url);
@@ -34,15 +34,15 @@ namespace USTITWEB.Services
 
                 switch (apiRequest.ApiType)
                 {
-                    case StaticDetails.ApiType.POST:
+                    case ApiType.POST:
                         message.Method = HttpMethod.Post;
                         break;
 
-                    case StaticDetails.ApiType.PUT:
+                    case ApiType.PUT:
                         message.Method = HttpMethod.Put;
                         break;
 
-                    case StaticDetails.ApiType.DELETE:
+                    case ApiType.DELETE:
                         message.Method = HttpMethod.Delete;
                         break;
 

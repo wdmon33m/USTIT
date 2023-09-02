@@ -1,17 +1,17 @@
-﻿using USTITAPI.Data;
-using USTITAPI.Models;
-using USTITAPI.Repository.IRepository;
+﻿using USTIT.Services.BasicDataAPI.Data;
+using USTIT.Services.BasicDataAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using USTIT.Services.BasicDataAPI.Repository.IRepository;
 
-namespace USTITAPI.Repository
+namespace USTIT.Services.BasicDataAPI.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _db;
+        private readonly AppDbContext _db;
         internal DbSet<T> _dbSet;
 
-        public Repository(ApplicationDbContext db)
+        public Repository(AppDbContext db)
         {
             _db = db;
             _dbSet = _db.Set<T>();
