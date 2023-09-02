@@ -1,4 +1,4 @@
-﻿@model IEnumerable<USTITWEB.Areas.BasicData.Models.Dto.CourseDto>
+﻿@*@model IEnumerable<USTITWEB.Areas.BasicData.Models.Dto.CourseDto>
 <br />
 <div class="container">
     <div class="row pt-4 pb-3">
@@ -41,4 +41,32 @@
             }
         </tbody>
     </table>
+</div>*@
+
+@model IEnumerable<CourseDto>
+
+<div method="get" class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <h1 class="tetx-white">Courses List</h1>
+        </div>
+        
+    </div>
+    <div class="card-body p-4">
+        <table id="tblData" class="table table-border table-striped pt-3" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Title</th>
+                    <th>Notes</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/BasicData/Course.js"></script>
+}
