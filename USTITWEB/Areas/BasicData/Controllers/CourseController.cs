@@ -1,13 +1,9 @@
-﻿using AutoMapper;
-using USTITWEB.Areas.BasicData.Models;
-using USTITWEB.Areas.BasicData.Models.Dto;
-using USTITWEB.Areas.BasicData.Services.IServices;
+﻿using USTIT.WEB.Areas.BasicData.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Reflection;
-using USTITWEB.Models;
-using USTITWEB.Areas.BasicData.Models.CreateDto;
-using USTIT.WEB.Utility;
+using USTIT.WEB.Models;
+using USTIT.WEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Services.IServices.BasicData;
 
 namespace USTIT.WEB.Areas.BasicData.Controllers
 {

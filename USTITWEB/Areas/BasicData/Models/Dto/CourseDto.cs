@@ -1,4 +1,4 @@
-﻿namespace USTITWEB.Areas.BasicData.Models.Dto
+﻿namespace USTIT.WEB.Areas.BasicData.Models.Dto
 {
     public class CourseDto
     {

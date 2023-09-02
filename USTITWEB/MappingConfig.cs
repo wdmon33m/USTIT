@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using USTITWEB.Areas.BasicData.Models.CreateDto;
-using USTITWEB.Areas.BasicData.Models.Dto;
-using USTITWEB.Areas.BasicData.Models.UpdateDto;
-using USTITWEB.Areas.BasicData.Services;
-using USTITWEB.Areas.BasicData.Services.IServices;
+using USTIT.WEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Areas.BasicData.Models.Dto;
+using USTIT.WEB.Areas.BasicData.Models.UpdateDto;
 
-namespace USTITWEB
+namespace USTIT.WEB
 {
     public class MappingConfig : Profile
     {

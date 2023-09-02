@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using USTITWEB.Models;
+using USTIT.WEB.Models;
 
-namespace USTITWEB.Areas.Customer.Controllers
+namespace USTIT.WEB.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace USTITWEB.Areas.BasicData.Models.CreateDto
+namespace USTIT.WEB.Areas.BasicData.Models.CreateDto
 {
     public class CourseCreateDto
     {

@@ -10,10 +10,10 @@ namespace USTIT.Services.BasicDataAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartmentAPIController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        public DepartmentController(IConfiguration configuration)
+        public DepartmentAPIController(IConfiguration configuration)
         {
             _configuration = configuration;
         }

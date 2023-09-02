@@ -1,8 +1,8 @@
-﻿using USTITWEB.Areas.BasicData.Models.CreateDto;
-using USTITWEB.Areas.BasicData.Models.UpdateDto;
-using USTITWEB.Models;
+﻿using USTIT.WEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Areas.BasicData.Models.UpdateDto;
+using USTIT.WEB.Models;
 
-namespace USTITWEB.Areas.BasicData.Services.IServices
+namespace USTIT.WEB.Services.IServices.BasicData
 {
     public interface ICourseService
     {
