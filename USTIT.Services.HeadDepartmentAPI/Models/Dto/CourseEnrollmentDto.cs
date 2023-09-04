@@ -1,4 +1,6 @@
-﻿namespace USTIT.Services.HeadDepartmentAPI.Models.Dto
+﻿using USTIT.Services.BasicDataAPI.Models.Dto;
+
+namespace USTIT.Services.HeadDepartmentAPI.Models.Dto
 {
     public class CourseEnrollmentDto
     {
@@ -9,6 +11,8 @@
         public int ClassNo { get; set; }
         public int SemNo { get; set; }
         public string TeacherNo { get; set; }
+        public TeacherDto? Teacher { get; set; }
+
         public int AcYear { get; set; }
         public int LectureWeight { get; set; }
         public int TutorialWeight { get; set; }

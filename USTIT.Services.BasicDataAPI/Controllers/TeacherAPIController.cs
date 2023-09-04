@@ -30,7 +30,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
         {
             try
             {
-                IEnumerable<Teacher> teachersList = await _db.GetAllAsync(includeProperties: "AcademicDegrees");
+                IEnumerable<Teacher> teachersList = await _db.GetAllAsync();//(includeProperties: "AcademicDegrees");
 
                 if (teachersList == null)
                 {

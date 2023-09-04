@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
+using Stripe.Issuing;
 using System.Net;
+using USTIT.Services.BasicDataAPI.Models.Dto;
 using USTIT.Services.HeadDepartmentAPI.Models;
 using USTIT.Services.HeadDepartmentAPI.Models.Dto;
 using USTIT.Services.HeadDepartmentAPI.Repository.IRepository;
+using USTIT.Services.HeadDepartmentAPI.Service.IService;
 
 namespace USTIT.Services.HeadDepartmentAPI.Controllers
 {
@@ -13,14 +17,16 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
     public class CourseEnrollmentController : ControllerBase
     {
         private readonly ICourseEnrollmentRepository _db;
+        private readonly ITeacherService _teacherService;
         private readonly IMapper _mapper;
         protected APIResponse _response;
 
-        public CourseEnrollmentController(ICourseEnrollmentRepository db, IMapper mapper)
+        public CourseEnrollmentController(ICourseEnrollmentRepository db, IMapper mapper, ITeacherService teacherService)
         {
             _db = db;
             _mapper = mapper;
             _response = new();
+            _teacherService = teacherService;
         }
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -30,15 +36,22 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
         {
             try
             {
-                IEnumerable<CourseEnrollment> list = await _db.GetAllAsync();
+                IEnumerable<CourseEnrollment> coursesList = await _db.GetAllAsync();
 
-                if (list == null)
+                if (coursesList == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
                     return _response;
                 }
 
-                _response.Result = _mapper.Map<List<CourseEnrollment>>(list);
+                IEnumerable<TeacherDto> teacherDto = await _teacherService.GetAllAsync();
+
+                foreach (var item in coursesList)
+                {
+                    item.Teacher = teacherDto.FirstOrDefault(u => u.TeacherNo == item.TeacherNo);
+                }
+
+                _response.Result = _mapper.Map<List<CourseEnrollmentDto>>(coursesList);
                 _response.StatusCode = HttpStatusCode.OK;
             }
             catch (Exception ex)
