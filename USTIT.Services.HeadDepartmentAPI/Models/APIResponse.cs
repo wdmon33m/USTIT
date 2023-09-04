@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace USTIT.WEB.Models
+namespace USTIT.Services.HeadDepartmentAPI.Models
 {
     public class APIResponse
     {

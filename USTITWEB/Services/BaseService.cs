@@ -1,11 +1,11 @@
-﻿using USTITWEB.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text;
 using System.Net;
-using USTITWEB.Services.IServices;
+using USTIT.WEB.Services.IServices;
 using static USTIT.WEB.Utility.SD;
+using USTIT.WEB.Models;
 
-namespace USTITWEB.Services
+namespace USTIT.WEB.Services
 {
     public class BaseService : IBaseServices
     {

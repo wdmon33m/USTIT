@@ -1,37 +1,43 @@
-﻿using AutoMapper;
-using USTITWEB.Areas.BasicData.Models;
-using USTITWEB.Areas.BasicData.Models.Dto;
-using USTITWEB.Areas.BasicData.Services.IServices;
+﻿using USTIT.WEB.Areas.BasicData.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Reflection;
-using USTITWEB.Models;
-using USTITWEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Models;
+using USTIT.WEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Services.IServices.BasicData;
 
-namespace USTITWEB.Areas.BasicData.Controllers
+namespace USTIT.WEB.Areas.BasicData.Controllers
 {
     [Area("BasicData")]
     public class CourseController : Controller
     {
         private readonly ICourseService _courseService;
-        private readonly IMapper _mapper;
-        public CourseController(ICourseService courseService,IMapper mapper)
+        public CourseController(ICourseService courseService)
         {
             _courseService = courseService;
-            _mapper = mapper;
         }
 
         public async Task<IActionResult> IndexCourse()
         {
-            List<CourseDto> listCourses = new();
+            return View();
+        }
 
-            var response = await _courseService.GetAllAsync<APIResponse>();
+        [HttpGet]
+        public JsonResult GetAll()
+        {
+            IEnumerable<CourseDto> list;
+
+            APIResponse response = _courseService.GetAllAsync<APIResponse>().GetAwaiter().GetResult();
             if (response != null && response.IsSuccess)
             {
-                listCourses = JsonConvert.DeserializeObject<List<CourseDto>>(Convert.ToString(response.Result));
+                list = JsonConvert.DeserializeObject<List<CourseDto>>(Convert.ToString(response.Result));
             }
-            return View(listCourses);
+            else
+            {
+                list = new List<CourseDto>();
+            }
+            return Json(new { data = list });
         }
+
         public async Task<IActionResult> CreateCourse()
         {
             return View();
@@ -54,58 +60,5 @@ namespace USTITWEB.Areas.BasicData.Controllers
             return View(model);
         }
 
-        //public async Task<IActionResult> UpdateVilla(int villaId)
-        //{
-        //    var response = await _villaService.GetAsync<APIResponse>(villaId);
-        //    if (response != null && response.IsSuccess)
-        //    {
-        //        VillaDTO model = JsonConvert.DeserializeObject<VillaDTO>(Convert.ToString(response.Result));
-        //        return View(_mapper.Map<VillaUpdateDTO>(model));
-        //    }
-        //    return NotFound();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> UpdateVilla(VillaUpdateDTO model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var response = await _villaService.UpdateAsync<APIResponse>(model);
-        //        if (response != null && response.IsSuccess)
-        //        {
-        //            TempData["success"] = "Villa updated successfully";
-        //            return RedirectToAction(nameof(IndexVilla));
-        //        }
-        //    }
-        //    TempData["error"] = "Error encountered";
-        //    return View(model);
-        //}
-
-        //public async Task<IActionResult> DeleteVilla(int villaId)
-        //{
-        //    var response = await _villaService.GetAsync<APIResponse>(villaId);
-        //    if (response != null && response.IsSuccess)
-        //    {
-        //        VillaDTO model = JsonConvert.DeserializeObject<VillaDTO>(Convert.ToString(response.Result));
-        //        return View(model);
-        //    }
-        //    return NotFound();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteVilla(VillaDTO model)
-        //{
-        //    var response = await _villaService.DeleteAsync<APIResponse>(model.Id);
-        //    if (response != null && response.IsSuccess)
-        //    {
-        //            TempData["success"] = "Villa deleted successfully";
-        //        return RedirectToAction(nameof(IndexVilla));
-        //    }
-
-        //    TempData["error"] = "Error encountered";
-        //    return View(model);
-        //}
     }
 }

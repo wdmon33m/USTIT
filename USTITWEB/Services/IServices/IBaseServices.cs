@@ -1,6 +1,6 @@
-﻿using USTITWEB.Models;
+﻿using USTIT.WEB.Models;
 
-namespace USTITWEB.Services.IServices
+namespace USTIT.WEB.Services.IServices
 {
     public interface IBaseServices
     {

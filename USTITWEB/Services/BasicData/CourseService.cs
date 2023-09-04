@@ -1,22 +1,22 @@
 ﻿using System;
-using USTITWEB.Services;
-using USTITWEB.Areas.BasicData.Services.IServices;
-using USTITWEB.Models;
-using USTITWEB.Areas.BasicData.Models.CreateDto;
-using USTITWEB.Areas.BasicData.Models.UpdateDto;
+using USTIT.WEB.Services;
+using USTIT.WEB.Models;
+using USTIT.WEB.Areas.BasicData.Models.CreateDto;
+using USTIT.WEB.Areas.BasicData.Models.UpdateDto;
 using USTIT.WEB.Utility;
+using USTIT.WEB.Services.IServices.BasicData;
 
-namespace USTITWEB.Areas.BasicData.Services
+namespace USTIT.WEB.Services.BasicData
 {
     public class CourseService : BaseService, ICourseService
     {
         private readonly IHttpClientFactory _clientFactory;
-        private string villaUrl;
+        private string apiUrl;
         private const string apiVersion = "v1";
         public CourseService(IHttpClientFactory clientFactory, IConfiguration configuration) : base(clientFactory)
         {
             _clientFactory = clientFactory;
-            villaUrl = configuration.GetValue<string>("ServiceUrls:USTAPI") + "/api/" + apiVersion + "/Courseapi";
+            apiUrl = configuration.GetValue<string>("ServiceUrls:USTAPI") + "/api/" + apiVersion + "/course";
 
         }
 
@@ -26,7 +26,7 @@ namespace USTITWEB.Areas.BasicData.Services
             {
                 ApiType = SD.ApiType.POST,
                 Data = dto,
-                Url = villaUrl
+                Url = apiUrl
             });
         }
 
@@ -35,7 +35,7 @@ namespace USTITWEB.Areas.BasicData.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.DELETE,
-                Url = villaUrl + "/" + coursecode
+                Url = apiUrl + "/" + coursecode
             });
         }
 
@@ -44,7 +44,7 @@ namespace USTITWEB.Areas.BasicData.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.GET,
-                Url = villaUrl
+                Url = apiUrl
             });
         }
 
@@ -53,7 +53,7 @@ namespace USTITWEB.Areas.BasicData.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.GET,
-                Url = villaUrl + "/" + coursecode
+                Url = apiUrl + "/" + coursecode
             });
         }
         public Task<T> UpdateAsync<T>(CourseUpdateDto dto)
@@ -62,7 +62,7 @@ namespace USTITWEB.Areas.BasicData.Services
             {
                 ApiType = SD.ApiType.PUT,
                 Data = dto,
-                Url = villaUrl + "/" + dto.CourseCode
+                Url = apiUrl + "/" + dto.CourseCode
             });
         }
     }

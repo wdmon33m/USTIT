@@ -1,7 +1,6 @@
-﻿using USTIT.WEB.Utility;
-using static USTIT.WEB.Utility.SD;
+﻿using static USTIT.WEB.Utility.SD;
 
-namespace USTITWEB.Models
+namespace USTIT.WEB.Models
 {
     public class APIRequest
     {

@@ -1,4 +1,4 @@
-namespace USTITWEB.Models
+namespace USTIT.WEB.Models
 {
     public class ErrorViewModel
     {

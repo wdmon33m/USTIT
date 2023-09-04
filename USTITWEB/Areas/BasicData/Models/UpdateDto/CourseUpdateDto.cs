@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace USTITWEB.Areas.BasicData.Models.UpdateDto
+namespace USTIT.WEB.Areas.BasicData.Models.UpdateDto
 {
     public class CourseUpdateDto
     {

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<TeacherDto>
+
+<div method="get" class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <h1 class="tetx-white">Teachers List</h1>
+        </div>
+        
+    </div>
+    <div class="card-body p-4">
+        <table id="tblData" class="table table-border table-striped pt-3" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Academic Degree</th>
+                    <th>Notes</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/BasicData/Teacher.js"></script>
+}
