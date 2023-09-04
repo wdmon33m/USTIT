@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using USTIT.Services.BasicDataAPI.Data;
 
@@ -11,9 +12,11 @@ using USTIT.Services.BasicDataAPI.Data;
 namespace USTIT.Services.BasicDataAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230904041908_addCourseEnrollmentTable")]
+    partial class addCourseEnrollmentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,10 +105,71 @@ namespace USTIT.Services.BasicDataAPI.Migrations
                     b.ToTable("Courses");
                 });
 
+            modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.CourseEnrollment", b =>
+                {
+                    b.Property<string>("CENo")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("AcYear")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CourseCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("CourseWeight")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeptCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("HasTutorial")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LabWeight")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LectureWeight")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SemNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeacherNo")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("TutorialWeight")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("CENo");
+
+                    b.HasIndex("TeacherNo");
+
+                    b.ToTable("CourseEnrollments");
+                });
+
             modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.Teacher", b =>
                 {
                     b.Property<string>("TeacherNo")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("AcademicDegreeID")
                         .HasColumnType("int");
@@ -146,6 +210,17 @@ namespace USTIT.Services.BasicDataAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.CourseEnrollment", b =>
+                {
+                    b.HasOne("USTIT.Services.BasicDataAPI.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherNo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.Teacher", b =>

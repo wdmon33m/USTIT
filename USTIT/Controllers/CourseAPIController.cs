@@ -13,18 +13,18 @@ using USTIT.Services.BasicDataAPI.Repository.IRepository;
 
 namespace USTIT.Services.BasicDataAPI.Controllers
 {
-    [Route("api/v{version:apiVersion}/Courseapi")]
+    [Route("api/v{version:apiVersion}/course")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CourseAPIController : ControllerBase
     {
-        private readonly ICourseRepository _dbCourse;
+        private readonly ICourseRepository _db;
         protected APIResponse _response;
         private readonly IMapper _mapper;
 
-        public CourseController(ICourseRepository dbCourse, IMapper mapper)
+        public CourseAPIController(ICourseRepository dbCourse, IMapper mapper)
         {
-            _dbCourse = dbCourse;
+            _db = dbCourse;
             _mapper = mapper;
             _response = new();
         }
@@ -32,11 +32,11 @@ namespace USTIT.Services.BasicDataAPI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetCourses()
+        public async Task<ActionResult<APIResponse>> Get()
         {
             try
             {
-                IEnumerable<Course> coursesList = await _dbCourse.GetAllAsync();
+                IEnumerable<Course> coursesList = await _db.GetAllAsync();
 
                 if (coursesList == null)
                 {
@@ -72,7 +72,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                     return _response;
                 }
 
-                var course = await _dbCourse.GetAsync(v => v.CourseCode == coursecode);
+                var course = await _db.GetAsync(v => v.CourseCode == coursecode);
 
                 if (course == null)
                 {
@@ -102,14 +102,14 @@ namespace USTIT.Services.BasicDataAPI.Controllers
         {
             try
             {
-                if (await _dbCourse.GetAsync(u => u.CourseCode.ToLower() == createDTO.CourseCode.ToLower()) != null)
+                if (await _db.GetAsync(u => u.CourseCode.ToLower() == createDTO.CourseCode.ToLower()) != null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
                     _response.ErrorMessages = new List<string> { "This Course Code Already Exists!" };
                     return _response;
                 }
-                if (await _dbCourse.GetAsync(u => u.CourseTitle.ToLower() == createDTO.CourseTitle.ToLower()) != null)
+                if (await _db.GetAsync(u => u.CourseTitle.ToLower() == createDTO.CourseTitle.ToLower()) != null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
@@ -127,7 +127,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                 Course course = _mapper.Map<Course>(createDTO);
                 course.CreationDate = DateTime.Now;
 
-                await _dbCourse.CreateAsync(course);
+                await _db.CreateAsync(course);
 
                 _response.Result = course;
                 _response.StatusCode = HttpStatusCode.Created;
@@ -159,7 +159,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                     return _response;
                 }
 
-                var course = await _dbCourse.GetAsync(u => u.CourseCode == coursecode);
+                var course = await _db.GetAsync(u => u.CourseCode == coursecode);
 
                 if (course == null)
                 {
@@ -169,7 +169,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                     return _response;
                 }
 
-                await _dbCourse.RemoveAsync(course);
+                await _db.RemoveAsync(course);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.Result = "Course has been deleted successfully";
             }
@@ -203,14 +203,14 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                     return _response;
                 }
 
-                if (await _dbCourse.GetAsync(u => u.CourseCode.ToLower() == courseDTO.CourseCode.ToLower(), tracked: false) == null)
+                if (await _db.GetAsync(u => u.CourseCode.ToLower() == courseDTO.CourseCode.ToLower(), tracked: false) == null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
                     _response.ErrorMessages = new List<string> { "This Course is not Exists!" };
                     return _response;
                 }
-                if (await _dbCourse.GetAsync(u => u.CourseTitle.ToLower() == courseDTO.CourseTitle.ToLower()) != null)
+                if (await _db.GetAsync(u => u.CourseTitle.ToLower() == courseDTO.CourseTitle.ToLower()) != null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
@@ -221,7 +221,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                 Course model = _mapper.Map<Course>(courseDTO);
 
 
-                _response.Result = await _dbCourse.UpdateAsync(model);
+                _response.Result = await _db.UpdateAsync(model);
                 _response.StatusCode = HttpStatusCode.NoContent;
             }
             catch (Exception ex)

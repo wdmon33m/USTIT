@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace USTIT.Services.BasicDataAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TeacherController : ControllerBase
+    public class ClassAPIController : ControllerBase
     {
+
     }
 }
