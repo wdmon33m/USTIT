@@ -7,9 +7,38 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{1A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{61140555-1F07-4899-8B72-2CB9958ECDD7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USTIT.WEB", "USTIT.WEB\USTIT.WEB.csproj", "{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USTIT.Services.BasicDataAPI", "USTIT.Services.BasicDataAPI\USTIT.Services.BasicDataAPI.csproj", "{F88A5635-C1E4-4C01-9533-C4EB2FAE048E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USTIT.Services.HeadDepartmentAPI", "USTIT.Services.HeadDepartmentAPI\USTIT.Services.HeadDepartmentAPI\USTIT.Services.HeadDepartmentAPI.csproj", "{3893B12A-37B6-47C5-97A5-8D0713871089}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88A5635-C1E4-4C01-9533-C4EB2FAE048E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88A5635-C1E4-4C01-9533-C4EB2FAE048E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88A5635-C1E4-4C01-9533-C4EB2FAE048E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88A5635-C1E4-4C01-9533-C4EB2FAE048E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3893B12A-37B6-47C5-97A5-8D0713871089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3893B12A-37B6-47C5-97A5-8D0713871089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3893B12A-37B6-47C5-97A5-8D0713871089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3893B12A-37B6-47C5-97A5-8D0713871089}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D506DBD6-5544-4FED-A0FB-DAD3B0EF8566} = {1A886221-C722-4738-A8A3-42D60F1DFC1C}
+		{F88A5635-C1E4-4C01-9533-C4EB2FAE048E} = {61140555-1F07-4899-8B72-2CB9958ECDD7}
+		{3893B12A-37B6-47C5-97A5-8D0713871089} = {61140555-1F07-4899-8B72-2CB9958ECDD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDDD9A2C-1E25-4557-9289-7C4E7182548F}
