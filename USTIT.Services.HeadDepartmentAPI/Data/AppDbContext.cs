@@ -15,15 +15,21 @@ namespace USTIT.Services.HeadDepartmentAPI.Data
         }
 
         public DbSet<Absence> Absences { get; set; }
+        public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Absence>()
-                .Property(t => t.ANo)
+                .Property(a => a.ANo)
                 .HasComputedColumnSql(@"'A-' + CAST(StdGroupNo AS NVARCHAR(50)) + '-' + SUBSTRING(CENo, 13, LEN(CENo)) + '-' + CAST(ADate AS NVARCHAR(20))");
 
-            // Set AbsenceId as the primary key
+            modelBuilder.Entity<Absence>().HasKey(p => p.AbsenceId);
+
+            modelBuilder.Entity<CourseEnrollment>()
+                .Property(c => c.CENo)
+                .HasComputedColumnSql(@"CAST([DeptCode] AS NVARCHAR(10)) + '-' + CAST([AcYear] AS NVARCHAR(4)) + '-' + CAST([SemNo] AS NVARCHAR(2)) + '-' + CAST([CourseCode] AS NVARCHAR(50))");
+
             modelBuilder.Entity<Absence>().HasKey(p => p.AbsenceId);
         }
     }

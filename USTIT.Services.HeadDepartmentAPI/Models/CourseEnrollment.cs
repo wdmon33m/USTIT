@@ -1,33 +1,47 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using USTIT.Services.BasicDataAPI.Models.Dto;
+using USTIT.Services.HeadDepartmentAPI.Models.Dto;
 
-namespace USTIT.Services.BasicDataAPI.Models
+namespace USTIT.Services.HeadDepartmentAPI.Models
 {
     public class CourseEnrollment
     {
+        [Key]
+        public int CEId { get; set; }
+
         [Required]
-        [MaxLength(50)]
+        [MaxLength(250)]
         public string CENo { get; set; }
 
         [Required]
-        [MaxLength(50)]
         public string DeptCode { get; set; }
+        [NotMapped]
+        public DepartmentDto Department { get; set; }
+
 
         [Required]
-        [MaxLength(50)]
         public string CourseCode { get; set; }
+        [NotMapped]
+        public CourseDto Course { get; set; }
+
 
         [Required]
         public int ClassNo { get; set; }
+        [NotMapped]
+        public ClassDto Class { get; set; }
+
 
         [Required]
         public int SemNo { get; set; }
+        [NotMapped]
+        public SemesterDto Semester { get; set; }
 
         [MaxLength(15)]
         [Required]
         public string TeacherNo { get; set; }
-        [ForeignKey("TeacherNo")]
-        public Teacher Teacher { get; set; }
+        [NotMapped]
+        public TeacherDto Teacher { get; set; }
 
         [Required]
         public int AcYear { get; set; }
@@ -43,12 +57,11 @@ namespace USTIT.Services.BasicDataAPI.Models
 
         public int? CourseWeight { get; set; }
 
-        [Required]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
 
         [Required]
         [MaxLength(50)]
-        public string UserID { get; set; }
+        public string UserID { get; set; } = string.Empty;
 
         [Required]
         public bool HasTutorial { get; set; }
