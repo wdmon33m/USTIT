@@ -7,16 +7,16 @@ using USTIT.Services.HeadDepartmentAPI.Repository.IRepository;
 
 namespace USTIT.Services.HeadDepartmentAPI.Controllers
 {
-    [Route("api/v{version:apiVersion}/absence")]
+    [Route("api/v{version:apiVersion}/courseEnrollment")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class AbsenceAPIController : ControllerBase
+    public class CourseEnrollmentController : ControllerBase
     {
-        private readonly IAbsenceRepository _db;
+        private readonly ICourseEnrollmentRepository _db;
         private readonly IMapper _mapper;
         protected APIResponse _response;
 
-        public AbsenceAPIController(IAbsenceRepository db, IMapper mapper)
+        public CourseEnrollmentController(ICourseEnrollmentRepository db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
@@ -30,7 +30,7 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
         {
             try
             {
-                IEnumerable<Absence> list = await _db.GetAllAsync();
+                IEnumerable<CourseEnrollment> list = await _db.GetAllAsync();
 
                 if (list == null)
                 {
@@ -38,7 +38,7 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
                     return _response;
                 }
 
-                _response.Result = _mapper.Map<List<AbsenceDto>>(list);
+                _response.Result = _mapper.Map<List<CourseEnrollment>>(list);
                 _response.StatusCode = HttpStatusCode.OK;
             }
             catch (Exception ex)
@@ -50,6 +50,5 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
 
             return _response;
         }
-
     }
 }

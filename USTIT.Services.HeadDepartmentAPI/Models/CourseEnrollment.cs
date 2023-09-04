@@ -61,10 +61,12 @@ namespace USTIT.Services.HeadDepartmentAPI.Models
 
         [Required]
         [MaxLength(50)]
-        public string UserID { get; set; } = string.Empty;
+        public string? UserID { get; set; } = string.Empty;
 
         [Required]
         public bool HasTutorial { get; set; }
+        [MaxLength]
+        public string? Notes { get; set; }
     }
 
 }

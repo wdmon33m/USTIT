@@ -9,6 +9,7 @@ namespace USTIT.Services.HeadDepartmentAPI
         public MappingConfig()
         {
             CreateMap<Absence, AbsenceDto>().ReverseMap();
+            CreateMap<CourseEnrollment, CourseEnrollmentDto>().ReverseMap();
         }
     }
 }

@@ -29,6 +29,9 @@ namespace USTIT.Services.HeadDepartmentAPI.Data
             modelBuilder.Entity<CourseEnrollment>()
                 .Property(c => c.CENo)
                 .HasComputedColumnSql(@"CAST([DeptCode] AS NVARCHAR(10)) + '-' + CAST([AcYear] AS NVARCHAR(4)) + '-' + CAST([SemNo] AS NVARCHAR(2)) + '-' + CAST([CourseCode] AS NVARCHAR(50))");
+            modelBuilder.Entity<CourseEnrollment>()
+               .Property(c => c.CourseWeight)
+               .HasComputedColumnSql(@"(([LectureWeight]+[TutorialWeight])+[LabWeight])");
 
             modelBuilder.Entity<Absence>().HasKey(p => p.AbsenceId);
         }

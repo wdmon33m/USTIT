@@ -14,7 +14,6 @@
         public int TutorialWeight { get; set; }
         public int LabWeight { get; set; }
         public int CourseWeight { get; set; }
-
         public bool HasTutorial { get; set; }
     }
 }
