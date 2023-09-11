@@ -32,36 +32,42 @@ namespace USTIT.Services.HeadDepartmentAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> Get()
+        public async Task<ActionResult<PagedResponse>> Get([FromQuery] PaginationFilter filter)
         {
+            PagedResponse response = new();
+            
             try
             {
-                IEnumerable<CourseEnrollment> coursesList = await _db.GetAllAsync();
+                //var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+                IEnumerable<CourseEnrollment> coursesList = await _db.GetAllAsync();//paginationFilter:validFilter);
+                
+                response.PageNumber = filter.PageNumber;
+                response.PageSize = filter.PageSize;
 
                 if (coursesList == null)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    return _response;
+                    response.StatusCode = HttpStatusCode.NotFound;
+                    return response;
                 }
 
-                IEnumerable<TeacherDto> teacherDto = await _teacherService.GetAllAsync();
+                //IEnumerable<TeacherDto> teacherDto = await _teacherService.GetAllAsync();
 
-                foreach (var item in coursesList)
-                {
-                    item.Teacher = teacherDto.FirstOrDefault(u => u.TeacherNo == item.TeacherNo);
-                }
+                //foreach (var item in coursesList)
+                //{
+                //    item.Teacher = teacherDto.FirstOrDefault(u => u.TeacherNo == item.TeacherNo);
+                //}
 
-                _response.Result = _mapper.Map<List<CourseEnrollmentDto>>(coursesList);
-                _response.StatusCode = HttpStatusCode.OK;
+                response.Result = _mapper.Map<List<CourseEnrollmentDto>>(coursesList);
+                response.StatusCode = HttpStatusCode.OK;
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
-                _response.StatusCode = HttpStatusCode.BadRequest;
+                response.IsSuccess = false;
+                response.ErrorMessages = new List<string> { ex.Message };
+                response.StatusCode = HttpStatusCode.BadRequest;
             }
 
-            return _response;
+            return response;
         }
     }
 }

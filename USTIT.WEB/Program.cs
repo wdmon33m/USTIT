@@ -1,5 +1,6 @@
 using USTIT.WEB;
 using USTIT.WEB.Services.BasicData;
+using USTIT.WEB.Services.HeadDepartment;
 using USTIT.WEB.Services.IServices.BasicData;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,8 +10,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddHttpClient<ICourseService, CourseService>();
 builder.Services.AddHttpClient<ITeacherService, TeacherService>();
+builder.Services.AddHttpClient<ICourseEnrollmentService, CourseEnrollmentService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<ICourseEnrollmentService, CourseEnrollmentService>();
 
 var app = builder.Build();
 

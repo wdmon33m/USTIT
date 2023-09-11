@@ -48,9 +48,16 @@ namespace USTIT.Services.HeadDepartmentAPI.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+        public async Task<List<T>> GetAllAsync(PaginationFilter? paginationFilter, Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
+
+            if (paginationFilter != null)
+            {
+                query = _dbSet.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                                        .Take(paginationFilter.PageSize);
+            }
+            
             if (filter != null)
             {
                 query = query.Where(filter);
