@@ -34,8 +34,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
 
                 if (teachersList == null)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    return _response;
+                    return _response.NotFound();
                 }
 
                 _response.Result = _mapper.Map<List<TeacherDto>>(teachersList);
@@ -43,8 +42,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;

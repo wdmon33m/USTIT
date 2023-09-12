@@ -7,8 +7,7 @@ using USTIT.Services.HeadDepartmentAPI;
 using USTIT.Services.HeadDepartmentAPI.Repository.IRepository;
 using USTIT.Services.HeadDepartmentAPI.Repository;
 using USTIT.Services.HeadDepartmentAPI.Service.IService;
-using USTIT.Services.BasicDataAPI.Models.Dto;
-using Restaurant.Services.ShoppingCartAPI.Service;
+using USTIT.Services.HeadDepartmentAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +19,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 
-builder.Services.AddHttpClient("Teacher", u => u.BaseAddress =
-new Uri(builder.Configuration["ServiceUrls:TeacherAPI"]));
+builder.Services.AddHttpClient("BasicData", u => u.BaseAddress =
+new Uri(builder.Configuration["ServiceUrls:BasicDataAPI"]));
 
 
 builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();

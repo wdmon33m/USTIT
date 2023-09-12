@@ -40,8 +40,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
 
                 if (coursesList == null)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    return _response;
+                    return _response.NotFound();
                 }
 
                 _response.Result = _mapper.Map<List<CourseDto>>(coursesList);
@@ -49,8 +48,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;
@@ -66,20 +64,14 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             {
                 if (coursecode.IsNullOrEmpty())
                 {
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string>() { "Please enter a course code" };
-                    return _response;
+                    return _response.BadRequest("Please enter a course code");
                 }
 
                 var course = await _db.GetAsync(v => v.CourseCode == coursecode);
 
                 if (course == null)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string>() { "The course is not exist!" };
-                    return _response;
+                    return _response.BadRequest("The course is not exist!");
                 }
 
                 _response.Result = _mapper.Map<CourseDto>(course);
@@ -87,8 +79,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;
@@ -104,17 +95,11 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             {
                 if (await _db.GetAsync(u => u.CourseCode.ToLower() == createDTO.CourseCode.ToLower()) != null)
                 {
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "This Course Code Already Exists!" };
-                    return _response;
+                    return _response.BadRequest("This Course Code Already Exists!");
                 }
                 if (await _db.GetAsync(u => u.CourseTitle.ToLower() == createDTO.CourseTitle.ToLower()) != null)
                 {
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "This Course Already Exists!" };
-                    return _response;
+                    return _response.BadRequest("This Course Already Exists!");
                 }
 
                 if (createDTO == null)
@@ -135,9 +120,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.StatusCode = HttpStatusCode.InternalServerError;
-                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;
@@ -153,20 +136,14 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             {
                 if (coursecode.IsNullOrEmpty())
                 {
-                    _response.ErrorMessages = new List<string>() { "Please enter course code" };
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    return _response;
+                    return _response.BadRequest("Please enter course code");
                 }
 
                 var course = await _db.GetAsync(u => u.CourseCode == coursecode);
 
                 if (course == null)
                 {
-                    _response.ErrorMessages = new List<string>() { "The course is not exists!" };
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    _response.IsSuccess = false;
-                    return _response;
+                    return _response.NotFound("The course is not exists!");
                 }
 
                 await _db.RemoveAsync(course);
@@ -175,9 +152,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
-                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;
@@ -194,28 +169,18 @@ namespace USTIT.Services.BasicDataAPI.Controllers
                 if (coursecode.IsNullOrEmpty() || coursecode != courseDTO.CourseCode)
                 {
                     if (coursecode.IsNullOrEmpty())
-                        _response.ErrorMessages = new List<string>() { "Please enter course code" };
+                        return _response.BadRequest("Please enter course code");
                     else
-                        _response.ErrorMessages = new List<string>() { "Course code shoud be same" };
-
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    return _response;
+                        return _response.BadRequest("Course code shoud be same");
                 }
 
                 if (await _db.GetAsync(u => u.CourseCode.ToLower() == courseDTO.CourseCode.ToLower(), tracked: false) == null)
                 {
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "This Course is not Exists!" };
-                    return _response;
+                    return _response.BadRequest("This Course is not Exists!");
                 }
                 if (await _db.GetAsync(u => u.CourseTitle.ToLower() == courseDTO.CourseTitle.ToLower()) != null)
                 {
-                    _response.StatusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.ErrorMessages = new List<string> { "The Course Title Already Exists!" };
-                    return _response;
+                    return _response.BadRequest("The Course Title Already Exists!");
                 }
 
                 Course model = _mapper.Map<Course>(courseDTO);
@@ -226,9 +191,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
-                _response.StatusCode = HttpStatusCode.BadRequest;
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;

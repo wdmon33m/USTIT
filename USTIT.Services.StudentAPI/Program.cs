@@ -7,6 +7,8 @@ using USTIT.Services.StudentAPI;
 using USTIT.Services.StudentAPI.Repository.IRepository;
 using USTIT.Services.StudentAPI.Repository;
 using USTIT.Services.StudentAPI.Models.Dto;
+using USTIT.Services.StudentAPI.Service.IService;
+using USTIT.Services.StudentAPI.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,11 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 
+builder.Services.AddHttpClient("BasicData", u => u.BaseAddress =
+new Uri(builder.Configuration["ServiceUrls:BasicDataAPI"]));
+
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 
 builder.Services.AddApiVersioning(options =>
 {

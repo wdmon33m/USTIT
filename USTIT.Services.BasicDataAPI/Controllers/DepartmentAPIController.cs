@@ -27,6 +27,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             _mapper = mapper;
             _response = new ();
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -38,8 +39,7 @@ namespace USTIT.Services.BasicDataAPI.Controllers
 
                 if (departmentsList == null)
                 {
-                    _response.StatusCode = HttpStatusCode.NotFound;
-                    return _response;
+                    return _response.NotFound();
                 }
 
                 _response.Result = _mapper.Map<List<DepartmentDto>>(departmentsList);
@@ -47,8 +47,32 @@ namespace USTIT.Services.BasicDataAPI.Controllers
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.InternalServerError(ex.Message);
+            }
+
+            return _response;
+        }
+
+        [HttpGet("{deptCode}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<APIResponse>> Get(string deptCode)
+        {
+            try
+            {
+                Department department = await _db.GetAsync(d => d.DeptCode == deptCode);
+
+                if (department == null)
+                {
+                    return _response.NotFound("Department is Not Exist!");
+                }
+
+                _response.Result = _mapper.Map<DepartmentDto>(department);
+                _response.StatusCode = HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                _response.InternalServerError(ex.Message);
             }
 
             return _response;

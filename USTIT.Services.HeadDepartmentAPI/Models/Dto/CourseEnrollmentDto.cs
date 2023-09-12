@@ -1,6 +1,4 @@
-﻿using USTIT.Services.BasicDataAPI.Models.Dto;
-
-namespace USTIT.Services.HeadDepartmentAPI.Models.Dto
+﻿namespace USTIT.Services.HeadDepartmentAPI.Models.Dto
 {
     public class CourseEnrollmentDto
     {

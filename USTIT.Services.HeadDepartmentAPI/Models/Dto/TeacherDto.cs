@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace USTIT.Services.BasicDataAPI.Models.Dto
+﻿namespace USTIT.Services.HeadDepartmentAPI.Models.Dto
 {
     public class TeacherDto
     {

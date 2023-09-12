@@ -1,4 +1,4 @@
-﻿using USTIT.Services.BasicDataAPI.Models.Dto;
+﻿using USTIT.Services.HeadDepartmentAPI.Models.Dto;
 
 namespace USTIT.Services.HeadDepartmentAPI.Service.IService
 {

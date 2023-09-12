@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Stripe;
-using Stripe.Issuing;
 using System.Net;
-using USTIT.Services.BasicDataAPI.Models.Dto;
 using USTIT.Services.HeadDepartmentAPI.Models;
 using USTIT.Services.HeadDepartmentAPI.Models.Dto;
 using USTIT.Services.HeadDepartmentAPI.Repository.IRepository;
