@@ -1,15 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace USTIT.Services.BasicDataAPI.Models.Dto
+﻿namespace USTIT.Services.BasicDataAPI.Models.Dto
 {
     public class DepartmentDto
     {
         public string DeptCode { get; set; }
-        [Required]
-        [MaxLength(30)]
-        public string DeptName { get; set; }
-        public string DeptNameArb { get; set; }
-        [Required]
+        public string DepartmentNameEng { get; set; }
+        public string DepartmentNameArb { get; set; }
         public int SemCount { get; set; }
     }
 }

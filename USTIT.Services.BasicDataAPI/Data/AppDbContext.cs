@@ -16,6 +16,8 @@ namespace USTIT.Services.BasicDataAPI.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<AcademicDegree> AcademicDegrees { get; set;}
         public DbSet<Teacher> Teachers { get; set;}
+        public DbSet<Department> Departments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,6 +27,7 @@ namespace USTIT.Services.BasicDataAPI.Data
             modelBuilder.Entity<Teacher>().HasIndex(c => c.TeacherName).IsUnique();
 
             modelBuilder.AcademicDegreeMB();
+            modelBuilder.DepartmentMB();
         }
     }
 }

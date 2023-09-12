@@ -15,6 +15,8 @@ namespace USTIT.Services.BasicDataAPI
             CreateMap<Course, CourseUpdateDto>().ReverseMap();
 
             CreateMap<Teacher, TeacherDto>().ReverseMap();
+
+            CreateMap<Department, DepartmentDto>().ReverseMap();
         }
     }
 }
