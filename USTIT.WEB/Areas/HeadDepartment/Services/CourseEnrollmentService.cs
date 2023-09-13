@@ -1,9 +1,10 @@
 ﻿using USTIT.WEB.Areas.HeadDepartment.Models;
+using USTIT.WEB.Areas.HeadDepartment.Services.IServices;
 using USTIT.WEB.Models;
-using USTIT.WEB.Services.IServices.BasicData;
+using USTIT.WEB.Services;
 using USTIT.WEB.Utility;
 
-namespace USTIT.WEB.Services.HeadDepartment
+namespace USTIT.WEB.Areas.HeadDepartment.Services
 {
     public class CourseEnrollmentService : BaseService, ICourseEnrollmentService
     {

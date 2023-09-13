@@ -4,7 +4,7 @@ using USTIT.Services.StudentAPI.Repository.IRepository;
 
 namespace USTIT.Services.StudentAPI.Repository
 {
-    public class StudentRepository : Repository<Student>, IStudentRepository
+    public class StudentRepository : Repository<StudentHeader>, IStudentRepository
     {
         private readonly AppDbContext _db;
 
@@ -13,10 +13,10 @@ namespace USTIT.Services.StudentAPI.Repository
             _db = db;
         }
 
-        public async Task<Student> UpdateAsync(Student entity)
+        public async Task<StudentHeader> UpdateAsync(StudentHeader entity)
         {
             //entity.UpdatedDate = DateTime.Now;
-            _db.Students.Update(entity);
+            _db.StudentHeaders.Update(entity);
             await _db.SaveChangesAsync();
             return entity;
         }

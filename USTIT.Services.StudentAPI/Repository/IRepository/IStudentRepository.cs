@@ -2,8 +2,8 @@
 
 namespace USTIT.Services.StudentAPI.Repository.IRepository
 {
-    public interface IStudentRepository : IRepository<Student>
+    public interface IStudentRepository : IRepository<StudentHeader>
     {
-        Task<Student> UpdateAsync(Student entity);
+        Task<StudentHeader> UpdateAsync(StudentHeader entity);
     }
 }

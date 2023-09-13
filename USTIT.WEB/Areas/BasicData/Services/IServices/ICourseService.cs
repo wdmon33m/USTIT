@@ -2,7 +2,7 @@
 using USTIT.WEB.Areas.BasicData.Models.UpdateDto;
 using USTIT.WEB.Models;
 
-namespace USTIT.WEB.Services.IServices.BasicData
+namespace USTIT.WEB.Areas.BasicData.Services.IServices
 {
     public interface ICourseService
     {

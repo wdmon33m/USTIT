@@ -82,35 +82,6 @@ namespace USTIT.Services.StudentAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("USTIT.Services.StudentAPI.Models.Student", b =>
-                {
-                    b.Property<string>("FullStdID")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<int>("AcYear")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeptCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("StdNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserID")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("FullStdID");
-
-                    b.ToTable("Students");
-                });
-
             modelBuilder.Entity("USTIT.Services.StudentAPI.Models.StudentBasicInfo", b =>
                 {
                     b.Property<string>("FullStdID")
@@ -144,6 +115,35 @@ namespace USTIT.Services.StudentAPI.Migrations
                     b.HasIndex("ReligionId");
 
                     b.ToTable("StudentBasicInfos");
+                });
+
+            modelBuilder.Entity("USTIT.Services.StudentAPI.Models.StudentHeader", b =>
+                {
+                    b.Property<string>("FullStdID")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("AcYear")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeptCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StdNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserID")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("FullStdID");
+
+                    b.ToTable("StudentHeaders");
                 });
 
             modelBuilder.Entity("USTIT.Services.StudentAPI.Models.StudentNames", b =>
@@ -212,13 +212,19 @@ namespace USTIT.Services.StudentAPI.Migrations
 
             modelBuilder.Entity("USTIT.Services.StudentAPI.Models.StudentNames", b =>
                 {
-                    b.HasOne("USTIT.Services.StudentAPI.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("FullStdID")
+                    b.HasOne("USTIT.Services.StudentAPI.Models.StudentHeader", "Student")
+                        .WithOne("StudentNames")
+                        .HasForeignKey("USTIT.Services.StudentAPI.Models.StudentNames", "FullStdID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("USTIT.Services.StudentAPI.Models.StudentHeader", b =>
+                {
+                    b.Navigation("StudentNames")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

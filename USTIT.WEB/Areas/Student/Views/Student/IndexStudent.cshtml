@@ -1,0 +1,29 @@
+﻿@model IEnumerable<StudentDto>
+
+<div method="get" class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <h1 class="tetx-white">Courses List</h1>
+        </div>
+
+    </div>
+    <div class="card-body p-4">
+        <table id="tblData" class="table table-border table-striped pt-3" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Dept Code</th>
+                    <th>Class No</th>
+                    <th>Sem No</th>
+                    <th>Ac Year</th>
+                    <th>Course Code</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Student/Student.js"></script>
+}

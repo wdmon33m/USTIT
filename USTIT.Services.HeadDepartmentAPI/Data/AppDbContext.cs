@@ -15,25 +15,30 @@ namespace USTIT.Services.HeadDepartmentAPI.Data
         }
 
         public DbSet<Absence> Absences { get; set; }
+        public DbSet<AbsenceDetails> AbsenceDetails { get; set; }
         public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Absence>().HasKey(p => p.ANo);
             modelBuilder.Entity<Absence>()
-                .Property(a => a.ANo)
-                .HasComputedColumnSql(@"'A-' + CAST(StdGroupNo AS NVARCHAR(50)) + '-' + SUBSTRING(CENo, 13, LEN(CENo)) + '-' + CAST(ADate AS NVARCHAR(20))");
+                .Property(a => a.ANo).IsRequired()
+                .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Absence>().HasKey(p => p.AbsenceId);
+            modelBuilder.Entity<AbsenceDetails>().HasKey(p => p.ANo);
+            modelBuilder.Entity<AbsenceDetails>()
+                .Property(a => a.ANo).IsRequired()
+                .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<CourseEnrollment>().HasKey(p => p.CENo);
             modelBuilder.Entity<CourseEnrollment>()
-                .Property(c => c.CENo)
-                .HasComputedColumnSql(@"CAST([DeptCode] AS NVARCHAR(10)) + '-' + CAST([AcYear] AS NVARCHAR(4)) + '-' + CAST([SemNo] AS NVARCHAR(2)) + '-' + CAST([CourseCode] AS NVARCHAR(50))");
+                .Property(a => a.CENo).IsRequired()
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<CourseEnrollment>()
                .Property(c => c.CourseWeight)
                .HasComputedColumnSql(@"(([LectureWeight]+[TutorialWeight])+[LabWeight])");
-
-            modelBuilder.Entity<Absence>().HasKey(p => p.AbsenceId);
         }
     }
 }

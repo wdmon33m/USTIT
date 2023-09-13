@@ -1,6 +1,6 @@
 ﻿using USTIT.WEB.Areas.HeadDepartment.Models;
 
-namespace USTIT.WEB.Services.IServices.BasicData
+namespace USTIT.WEB.Areas.HeadDepartment.Services.IServices
 {
     public interface ICourseEnrollmentService
     {

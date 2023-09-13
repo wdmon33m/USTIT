@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using USTIT.WEB.Areas.HeadDepartment.Models;
+using USTIT.WEB.Areas.HeadDepartment.Services.IServices;
 using USTIT.WEB.Models;
-using USTIT.WEB.Services.BasicData;
-using USTIT.WEB.Services.IServices.BasicData;
 
 namespace USTIT.WEB.Areas.HeadDepartment.Controllers
 {

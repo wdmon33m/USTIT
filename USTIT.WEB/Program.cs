@@ -1,7 +1,8 @@
 using USTIT.WEB;
-using USTIT.WEB.Services.BasicData;
-using USTIT.WEB.Services.HeadDepartment;
-using USTIT.WEB.Services.IServices.BasicData;
+using USTIT.WEB.Areas.BasicData.Services;
+using USTIT.WEB.Areas.BasicData.Services.IServices;
+using USTIT.WEB.Areas.HeadDepartment.Services;
+using USTIT.WEB.Areas.HeadDepartment.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

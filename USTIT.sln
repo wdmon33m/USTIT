@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USTIT.Services.BasicDataAPI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USTIT.Services.HeadDepartmentAPI", "USTIT.Services.HeadDepartmentAPI\USTIT.Services.HeadDepartmentAPI.csproj", "{B146A43A-E6F9-4239-A5DA-13796C77176A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USTIT.Services.StudentAPI", "USTIT.Services.StudentAPI\USTIT.Services.StudentAPI.csproj", "{E4EF74D6-89F1-426B-A3D5-C7A0F41358AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USTIT.Services.StudentAPI", "USTIT.Services.StudentAPI\USTIT.Services.StudentAPI.csproj", "{E4EF74D6-89F1-426B-A3D5-C7A0F41358AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

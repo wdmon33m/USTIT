@@ -4,7 +4,7 @@ using USTIT.Services.StudentAPI.Models.Dto;
 
 namespace USTIT.Services.StudentAPI.Models
 {
-    public class Student
+    public class StudentHeader
     {
         public string FullStdID { get; private set;}
         [Required]
@@ -14,6 +14,7 @@ namespace USTIT.Services.StudentAPI.Models
         [NotMapped]
         public DepartmentDto Department { get; set; }
 
+        public StudentNames StudentNames { get; set; }
 
         [Required]
         public int StdNo { get; set; }

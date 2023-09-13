@@ -8,7 +8,12 @@ namespace USTIT.Services.StudentAPI
     {
         public MappingConfig()
         {
-            CreateMap<Student, StudentDto>().ReverseMap();
+            CreateMap<StudentHeader, StudentHeaderDto>().ReverseMap();
+            CreateMap<StudentNames, StudentNamesDto>().ReverseMap();
+
+            //CreateMap<Student, StudentDto>()
+            //    .ForMember(dest => dest.StudentNames, u => u.MapFrom(src => src.StudentNames))
+            //    .ReverseMap();
         }
     }
 }

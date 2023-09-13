@@ -2,7 +2,6 @@
 {
     public class CourseEnrollmentDto
     {
-        public int CourseId { get; set; }
         public string CENo { get; set; }
         public string DeptCode { get; set; }
         public string CourseCode { get; set; }

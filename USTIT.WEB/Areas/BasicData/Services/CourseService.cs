@@ -4,9 +4,9 @@ using USTIT.WEB.Models;
 using USTIT.WEB.Areas.BasicData.Models.CreateDto;
 using USTIT.WEB.Areas.BasicData.Models.UpdateDto;
 using USTIT.WEB.Utility;
-using USTIT.WEB.Services.IServices.BasicData;
+using USTIT.WEB.Areas.BasicData.Services.IServices;
 
-namespace USTIT.WEB.Services.BasicData
+namespace USTIT.WEB.Areas.BasicData.Services
 {
     public class CourseService : BaseService, ICourseService
     {

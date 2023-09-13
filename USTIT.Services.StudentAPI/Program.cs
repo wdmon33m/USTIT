@@ -25,6 +25,7 @@ new Uri(builder.Configuration["ServiceUrls:BasicDataAPI"]));
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<ICourseEnrollmentService, CourseEnrollmentService>();
 
 builder.Services.AddApiVersioning(options =>
 {

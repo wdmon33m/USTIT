@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using USTIT.WEB.Areas.BasicData.Models.Dto;
+using USTIT.WEB.Areas.BasicData.Services.IServices;
 using USTIT.WEB.Models;
-using USTIT.WEB.Services.IServices.BasicData;
 
 namespace USTIT.WEB.Areas.BasicData.Controllers
 {

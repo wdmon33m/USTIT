@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using USTIT.Services.StudentAPI.Models.Dto;
 
 namespace USTIT.Services.StudentAPI.Models
 {
     public class StudentNames
     {
         public string FullStdID { get; set; }
-        [ForeignKey("FullStdID")]
-        public Student Student { get; set; }
+        public StudentHeader Student { get; set; }
         public string? ArFirstName { get; set; }
         public string? ArSecondName { get; set; }
         public string? ArThirdName { get; set; }

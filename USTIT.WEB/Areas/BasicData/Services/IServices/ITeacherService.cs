@@ -1,6 +1,6 @@
 ﻿using USTIT.WEB.Areas.BasicData.Models.Dto;
 
-namespace USTIT.WEB.Services.IServices.BasicData
+namespace USTIT.WEB.Areas.BasicData.Services.IServices
 {
     public interface ITeacherService
     {

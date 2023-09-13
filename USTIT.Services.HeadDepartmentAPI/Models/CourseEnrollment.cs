@@ -6,11 +6,6 @@ namespace USTIT.Services.HeadDepartmentAPI.Models
 {
     public class CourseEnrollment
     {
-        [Key]
-        public int CEId { get; set; }
-
-        [Required]
-        [MaxLength(250)]
         public string CENo { get; set; }
 
         [Required]

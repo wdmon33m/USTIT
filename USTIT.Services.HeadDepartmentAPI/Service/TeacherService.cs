@@ -31,7 +31,7 @@ namespace USTIT.Services.HeadDepartmentAPI.Service
         public async Task<TeacherDto> GetAsync(string teacherNo)
         {
             var client = _httpClientFactory.CreateClient("BasicData");
-            var response = await client.GetAsync($"/api/teacher/" + teacherNo);
+            var response = await client.GetAsync($"/api/v1/teacher/" + teacherNo);
             var apiContent = await response.Content.ReadAsStringAsync();
             var resp = JsonConvert.DeserializeObject<APIResponse>(apiContent);
 

@@ -24,21 +24,12 @@ namespace USTIT.Services.HeadDepartmentAPI.Migrations
 
             modelBuilder.Entity("USTIT.Services.HeadDepartmentAPI.Models.Absence", b =>
                 {
-                    b.Property<int>("AbsenceId")
+                    b.Property<string>("ANo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AbsenceId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("ADate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ANo")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)")
-                        .HasComputedColumnSql("'A-' + CAST(StdGroupNo AS NVARCHAR(50)) + '-' + SUBSTRING(CENo, 13, LEN(CENo)) + '-' + CAST(ADate AS NVARCHAR(20))");
 
                     b.Property<string>("CENo")
                         .IsRequired()
@@ -54,28 +45,41 @@ namespace USTIT.Services.HeadDepartmentAPI.Migrations
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AbsenceId");
+                    b.HasKey("ANo");
 
                     b.ToTable("Absences");
                 });
 
+            modelBuilder.Entity("USTIT.Services.HeadDepartmentAPI.Models.AbsenceDetails", b =>
+                {
+                    b.Property<string>("ANo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FullStdId")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<DateTime?>("TransactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ANo");
+
+                    b.ToTable("AbsenceDetails");
+                });
+
             modelBuilder.Entity("USTIT.Services.HeadDepartmentAPI.Models.CourseEnrollment", b =>
                 {
-                    b.Property<int>("CEId")
+                    b.Property<string>("CENo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CEId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AcYear")
                         .HasColumnType("int");
-
-                    b.Property<string>("CENo")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)")
-                        .HasComputedColumnSql("CAST([DeptCode] AS NVARCHAR(10)) + '-' + CAST([AcYear] AS NVARCHAR(4)) + '-' + CAST([SemNo] AS NVARCHAR(2)) + '-' + CAST([CourseCode] AS NVARCHAR(50))");
 
                     b.Property<int>("ClassNo")
                         .HasColumnType("int");
@@ -124,7 +128,7 @@ namespace USTIT.Services.HeadDepartmentAPI.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CEId");
+                    b.HasKey("CENo");
 
                     b.ToTable("CourseEnrollments");
                 });

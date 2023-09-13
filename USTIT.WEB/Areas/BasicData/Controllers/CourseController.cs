@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using USTIT.WEB.Models;
 using USTIT.WEB.Areas.BasicData.Models.CreateDto;
-using USTIT.WEB.Services.IServices.BasicData;
+using USTIT.WEB.Areas.BasicData.Services.IServices;
 
 namespace USTIT.WEB.Areas.BasicData.Controllers
 {
