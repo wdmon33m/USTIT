@@ -12,11 +12,5 @@ namespace USTIT.Services.BasicDataAPI.Utility
             else
                 return false;
         }
-        public static APIResponse GetBadRequest(APIResponse response,List<string> errorMessages)
-        {
-            response.StatusCode = HttpStatusCode.BadRequest;
-            response.ErrorMessages = errorMessages;
-            return response;
-        }
     }
 }

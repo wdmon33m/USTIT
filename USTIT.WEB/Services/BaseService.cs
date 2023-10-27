@@ -58,16 +58,19 @@ namespace USTIT.WEB.Services
                 try
                 {
                     var ApiResponse = JsonConvert.DeserializeObject<APIResponse>(apiContent);
-                    if (ApiResponse.StatusCode == HttpStatusCode.BadRequest ||
-                        ApiResponse.StatusCode == HttpStatusCode.NotFound)
+                    if (ApiResponse is not null)
                     {
-                        ApiResponse.StatusCode = HttpStatusCode.BadRequest;
-                        ApiResponse.IsSuccess = false;
+                        if (ApiResponse.StatusCode == HttpStatusCode.BadRequest ||
+                            ApiResponse.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            ApiResponse.StatusCode = HttpStatusCode.BadRequest;
+                            ApiResponse.IsSuccess = false;
 
-                        var res = JsonConvert.SerializeObject(ApiResponse);
-                        var returnObj = JsonConvert.DeserializeObject<T>(res);
-                        return returnObj;
+                            var res = JsonConvert.SerializeObject(ApiResponse);
+                            var returnObj = JsonConvert.DeserializeObject<T>(res);
+                            return returnObj;
 
+                        }
                     }
                 }
                 catch (Exception)
