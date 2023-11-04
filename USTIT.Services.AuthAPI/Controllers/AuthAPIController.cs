@@ -6,7 +6,8 @@ using USTIT.Services.AuthAPI.Utility;
 
 namespace USTIT.Services.AuthAPI.Controllers
 {
-    [Route("api/auth")]
+    [Route("api/v{version:apiVersion}/auth")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class AuthAPIController : ControllerBase
     {

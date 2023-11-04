@@ -173,6 +173,32 @@ namespace USTIT.Services.BasicDataAPI.Migrations
                         });
                 });
 
+            modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.Hall", b =>
+                {
+                    b.Property<int>("HallNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HallNo"));
+
+                    b.Property<int>("ExamCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HallName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LectureCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HallNo");
+
+                    b.ToTable("Halls");
+                });
+
             modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.Teacher", b =>
                 {
                     b.Property<string>("TeacherNo")
@@ -217,6 +243,77 @@ namespace USTIT.Services.BasicDataAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.WeekDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Day")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DayArb")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Day")
+                        .IsUnique();
+
+                    b.HasIndex("DayArb")
+                        .IsUnique();
+
+                    b.ToTable("WeekDays");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Day = "Saturday",
+                            DayArb = "السبت"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Day = "Sunday",
+                            DayArb = "الأحد"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Day = "Monday",
+                            DayArb = "الإثنين"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Day = "Tuesday",
+                            DayArb = "الثلاثاء"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Day = "Wednesday",
+                            DayArb = "الأربعاء"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Day = "Thursday",
+                            DayArb = "الخميس"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Day = "Friday",
+                            DayArb = "الجمعة"
+                        });
                 });
 
             modelBuilder.Entity("USTIT.Services.BasicDataAPI.Models.Teacher", b =>

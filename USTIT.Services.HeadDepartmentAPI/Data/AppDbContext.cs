@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Stripe;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Common;
 using USTIT.Services.HeadDepartmentAPI.Models;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace USTIT.Services.HeadDepartmentAPI.Data
 {
@@ -17,6 +13,10 @@ namespace USTIT.Services.HeadDepartmentAPI.Data
         public DbSet<Absence> Absences { get; set; }
         public DbSet<AbsenceDetails> AbsenceDetails { get; set; }
         public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
+        public DbSet<LectureTime> LectureTimes { get; set; }
+        public DbSet<StudentGroup> StudentGroups { get; set; }
+        public DbSet<LectureSchedule> LectureSchedules { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -39,6 +39,9 @@ namespace USTIT.Services.HeadDepartmentAPI.Data
             modelBuilder.Entity<CourseEnrollment>()
                .Property(c => c.CourseWeight)
                .HasComputedColumnSql(@"(([LectureWeight]+[TutorialWeight])+[LabWeight])");
+
+            modelBuilder.LectureTimeMB();
+            modelBuilder.LecureScheduleVM();
         }
     }
 }

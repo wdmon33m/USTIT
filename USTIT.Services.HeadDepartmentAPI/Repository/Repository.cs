@@ -76,7 +76,6 @@ namespace USTIT.Services.HeadDepartmentAPI.Repository
         {
             _dbSet.Remove(entity);
             await SaveAsync();
-
         }
 
         public async Task SaveAsync()

@@ -3,7 +3,7 @@ using USTIT.Services.BasicDataAPI.Models;
 
 namespace USTIT.Services.BasicDataAPI.Data
 {
-    public static class DepartmentMoudelBuilder
+    public static class DepartmentMoudelMoudelBuilder
     {
         public static ModelBuilder DepartmentMB(this ModelBuilder modelBuilder)
         {

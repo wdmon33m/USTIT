@@ -16,7 +16,7 @@ namespace USTIT.WEB.Areas.BasicData.Services
         public CourseService(IHttpClientFactory clientFactory, IConfiguration configuration) : base(clientFactory)
         {
             _clientFactory = clientFactory;
-            apiUrl = configuration.GetValue<string>("ServiceUrls:USTAPI") + "/api/" + apiVersion + "/course";
+            apiUrl = configuration.GetValue<string>("ServiceUrls:USTAPI") + "/api/" + apiVersion + "/course/";
 
         }
 
@@ -35,7 +35,7 @@ namespace USTIT.WEB.Areas.BasicData.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.DELETE,
-                Url = apiUrl + "/" + coursecode
+                Url = apiUrl + coursecode
             });
         }
 
@@ -53,7 +53,7 @@ namespace USTIT.WEB.Areas.BasicData.Services
             return SendAsync<T>(new APIRequest()
             {
                 ApiType = SD.ApiType.GET,
-                Url = apiUrl + "/" + coursecode
+                Url = apiUrl + coursecode
             });
         }
         public Task<T> UpdateAsync<T>(CourseUpdateDto dto)
@@ -62,7 +62,7 @@ namespace USTIT.WEB.Areas.BasicData.Services
             {
                 ApiType = SD.ApiType.PUT,
                 Data = dto,
-                Url = apiUrl + "/" + dto.CourseCode
+                Url = apiUrl + dto.CourseCode
             });
         }
     }

@@ -15,7 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"));
+    //https://www.nuget.org/packages/ErikEJ.EntityFrameworkCore.SqlServer.DateOnlyTimeOnly
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection"), x => x.UseDateOnlyTimeOnly());
 });
 
 
@@ -25,8 +26,16 @@ new Uri(builder.Configuration["ServiceUrls:BasicDataAPI"]));
 
 builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();
 builder.Services.AddScoped<ICourseEnrollmentRepository, CourseEnrollmentRepository>();
+builder.Services.AddScoped<IStudentGroupRepository, StudentGroupRepository>();
+builder.Services.AddScoped<ILectureScheduleRepository, LectureScheduleRepository>();
+
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IClassService, ClassService>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<ICourseEnrollmentService, CourseEnrollmentService>();
+builder.Services.AddScoped<IStudentGroupService, StudentGroupService>();
+builder.Services.AddScoped<IBasicDataService, BasicDataService>();
+builder.Services.AddScoped<ILectureSchedulesService, LectureSchedulesService>();
 
 builder.Services.AddApiVersioning(options =>
 {

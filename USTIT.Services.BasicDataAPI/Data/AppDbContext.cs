@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Stripe;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Common;
 using USTIT.Services.BasicDataAPI.Models;
 
 namespace USTIT.Services.BasicDataAPI.Data
@@ -12,12 +9,12 @@ namespace USTIT.Services.BasicDataAPI.Data
             : base(options)
         {
         }
-
         public DbSet<Course> Courses { get; set; }
         public DbSet<AcademicDegree> AcademicDegrees { get; set;}
         public DbSet<Teacher> Teachers { get; set;}
         public DbSet<Department> Departments { get; set; }
-
+        public DbSet<Hall> Halls { get; set; }
+        public DbSet<WeekDay> WeekDays { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +26,7 @@ namespace USTIT.Services.BasicDataAPI.Data
 
             modelBuilder.AcademicDegreeMB();
             modelBuilder.DepartmentMB();
+            modelBuilder.WeekDayMB();
         }
     }
 }

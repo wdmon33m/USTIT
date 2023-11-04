@@ -7,7 +7,8 @@ using System.Net;
 
 namespace USTIT.Services.AuthAPI.Controllers
 {
-    [Route("api/role")]
+    [Route("api/v{version:apiVersion}/role")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class RoleAPIController : ControllerBase
     {

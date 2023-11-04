@@ -19,6 +19,8 @@ namespace USTIT.Services.BasicDataAPI
             CreateMap<Department, DepartmentDto>().ReverseMap();
 
             CreateMap<Class, ClassDto>().ReverseMap();
+
+            CreateMap<WeekDay, WeekDayDto>().ReverseMap();
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System.Security.Cryptography;
 using USTIT.Services.BasicDataAPI.Repository.IRepository;
 using AutoMapper;
 using USTIT.Services.BasicDataAPI.Models;
